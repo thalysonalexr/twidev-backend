@@ -4,13 +4,13 @@
   "description": "Api da aplicação Twidev.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thalysonalexr/twidev.git"
+    "url": "git+https://github.com/thalysonalexr/twidev-backend.git"
   },
   "keywords": [
     "twitter",
@@ -22,9 +22,9 @@
   "author": "Thalyson Rodrigues",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/thalysonalexr/twidev/issues"
+    "url": "https://github.com/thalysonalexr/twidev-backend/issues"
   },
-  "homepage": "https://github.com/thalysonalexr/twidev#readme",
+  "homepage": "https://github.com/thalysonalexr/twidev-backend#readme",
   "dependencies": {
     "axios": "^0.19.1",
     "body-parser": "^1.19.0",
