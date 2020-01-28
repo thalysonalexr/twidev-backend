@@ -3,6 +3,8 @@ const express = require("express");
 const parser = require("body-parser");
 const routes = require("./routes.js");
 
+console.log(`[${process.env.NODE_ENV}]environment`);
+
 // development | test | production
 if ( ! process.env.NODE_ENV) {
   process.env.NODE_ENV = "development";
