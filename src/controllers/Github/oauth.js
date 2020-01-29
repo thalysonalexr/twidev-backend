@@ -45,7 +45,7 @@ module.exports = {
 
       return response.status(200).json(data);
     } catch (err) {
-      return response.status(500).jsn(err.message);
+      return response.status(500).json(err.message);
     }
   }
 };
