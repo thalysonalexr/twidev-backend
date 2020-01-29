@@ -1,7 +1,7 @@
 const User = require("../../models/User/index.js");
 
 module.exports = {
-  async find (request, response) {
+  async create (request, response) {
 
     const { userGithub } = request;
     const { login } = userGithub;

@@ -24,11 +24,11 @@ routes.post("/v1/users/token/validate", Auth.authenticate, (request, response) =
 
 routes.get("/v1/users/github/oauth", GithubController.oauth);
 routes.get("/v1/users/signin/callback", GithubController.callback);
-routes.post("/v1/users", Auth.authenticate, UserController.find);
+routes.post("/v1/users", Auth.authenticate, UserController.create);
 
-routes.get("/v1/tweets", Auth.authenticate, TweetController.getTweets);
-routes.post("/v1/tweets", Auth.authenticate, TweetController.newTweet);
-routes.post("/v1/tweets/:id/like", Auth.authenticate, TweetController.like);
-routes.post("/v1/tweets/:id/dislike", Auth.authenticate, TweetController.dislike);
+routes.get("/v1/tweets", Auth.authenticate, TweetController.all);
+routes.post("/v1/tweets", Auth.authenticate, TweetController.create);
+routes.put("/v1/tweets/:id/like", Auth.authenticate, TweetController.like);
+routes.put("/v1/tweets/:id/dislike", Auth.authenticate, TweetController.dislike);
 
 module.exports = routes;

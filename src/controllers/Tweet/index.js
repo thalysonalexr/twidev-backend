@@ -2,7 +2,7 @@ const User = require("../../models/User/index.js");
 const Tweet = require("../../models/Tweet/index.js");
 
 module.exports = {
-  async newTweet (request, response) {
+  async create (request, response) {
     const { login } = request.userGithub;
     const { content } = request.body;
 
@@ -42,7 +42,7 @@ module.exports = {
     }
   },
 
-  async getTweets (request, response) {
+  async all (request, response) {
      /* get a 25 lasted tweets document */
     const { limit } = request.query;
 
