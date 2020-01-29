@@ -1,4 +1,4 @@
-const apiGithub = require("../../services/github.js");
+const axios = require("axios");
 
 module.exports = {
   async oauth (request, response) {
@@ -26,7 +26,7 @@ module.exports = {
     const client_id = process.env.GITHUB_CLIENT;
     const client_secret = process.env.GITHUB_SECRET;
 
-    const { data } = await apiGithub(url, {
+    const { data } = await axios(url, {
       method: "post",
       data: {
         client_id: client_id,
