@@ -27,13 +27,15 @@ module.exports = {
     const client_secret = process.env.GITHUB_SECRET;
 
     try {
-      const { data } = await axios.post(url, {
-        client_id: client_id,
-        client_secret: client_secret,
-        code: code
-      },
-      {
-        Accept: "application/json"
+      const { data } = await axios(url, {
+        data: {
+          client_id: client_id,
+          client_secret: client_secret,
+          code: code
+        },
+        headers: {
+          Accept: "application/json"
+        }
       });
     
       if (data.error) {
