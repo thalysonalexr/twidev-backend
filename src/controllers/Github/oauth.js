@@ -26,10 +26,6 @@ module.exports = {
     const client_id = process.env.GITHUB_CLIENT;
     const client_secret = process.env.GITHUB_SECRET;
 
-    console.log(url);
-    console.log(client_id);
-    console.log(client_secret);
-
     try {
       const { data } = await axios.post(url, {
         client_id: client_id,
