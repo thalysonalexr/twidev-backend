@@ -28,6 +28,7 @@ module.exports = {
 
     try {
       const { data } = await axios(url, {
+        method: "post",
         data: {
           client_id: client_id,
           client_secret: client_secret,
