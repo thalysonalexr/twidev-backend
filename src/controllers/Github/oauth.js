@@ -26,25 +26,26 @@ module.exports = {
     const client_id = process.env.GITHUB_CLIENT;
     const client_secret = process.env.GITHUB_SECRET;
 
-    const { data } = await axios(url, {
-      method: "post",
-      data: {
+    try {
+      const { data } = await axios.post(url, {
         client_id: client_id,
         client_secret: client_secret,
         code: code
       },
-      headers: {
+      {
         Accept: "application/json"
-      }
-    });
-
-    if (data.error) {
-      return response.status(401).json({
-        sucess: false,
-        message: "[error:401] Not authorized."
       });
-    }
+    
+      if (data.error) {
+        return response.status(401).json({
+          sucess: false,
+          message: "[error:401] Not authorized."
+        });
+      }
 
-    return response.status(200).json(data);
+      return response.status(200).json(data);
+    } catch (err) {
+      return response.status(500).jsn(err.message);
+    }
   }
 };
