@@ -6,7 +6,7 @@ module.exports = {
     const { login } = request.userGithub;
     const { content } = request.body;
 
-    if ( ! content) {
+    if ( ! content.trim()) {
       return response.status(400).json({
         success: false,
         message: "[error:400] No content tweet in request."
@@ -29,7 +29,7 @@ module.exports = {
       .exec();
 
     try {
-      console.log(`New tweet is posting by ${login}`);
+      console.log(`New tweet was posting by ${login}`);
 
       request.io.emit("new-tweet", latestTweets);
 
