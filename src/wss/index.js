@@ -28,10 +28,6 @@ module.exports = (Server) => {
     }
   
     const { user } = socket.handshake.query;
-
-    if (user in connectedUsers) {
-      socket.emit("client-multi-connections")
-    }
   
     connectedUsers[user] = socket.id;
 
