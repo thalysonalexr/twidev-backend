@@ -34,13 +34,14 @@ module.exports = (Server) => {
     }
   
     connectedUsers[user] = socket.id;
-  
-    socket.emit("bootstrap", connectedUsers);
-  
+
+    socket.broadcast.emit("bootstrap", connectedUsers);
+
     socket.on("disconnect", () => {
       delete connectedUsers[user];
-  
+      
       console.log(`The user(${user}) with id(${socket.id}) is disconnected.`);
+      socket.broadcast.emit("bootstrap", connectedUsers);
       socket.broadcast.emit("user-disconnected", socket.id);
     });
   });
