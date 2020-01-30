@@ -1,4 +1,5 @@
 const User = require("../../models/User/index.js");
+const Tweet = require("../../models/Tweet/index.js");
 
 module.exports = {
   async create (request, response) {
@@ -33,21 +34,29 @@ module.exports = {
 
   async find(request, response) {
 
-    const { userGithub } = request;
-    const { login } = userGithub;
+    const { id } = request.params;
 
-    const user = await User.findOne({ username: login }).select({
+    const userDoc = await User.findOne({ _id: id }).select({
       _id: 0,
       name: 1,
       username: 1,
       avatar: 1
     });
 
-    if ( ! user) {
+    if ( ! userDoc) {
       return response.status(404).json({
         success: false,
         message: '[error:404] user not found.'
       });
+    }
+
+    const totalTweets = await Tweet.countDocuments({ author: id });
+
+    const user = {
+      name: userDoc.name,
+      username: userDoc.username,
+      avatar: userDoc.avatar,
+      total_tweets: totalTweets
     }
 
     return response.status(200).json(user);
