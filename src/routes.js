@@ -12,19 +12,21 @@ routes.get("/", (request, response) => {
 
 routes.get("/v1/", (request, response) => {
   return response.status(200).json({
-    message: "Congratulations! You are accessing Api Twidev V1."
-  });
-});
-
-routes.post("/v1/users/token/validate", Auth.authenticate, (request, response) => {
-  return response.status(200).json({
-    username: request.userGithub.login
+    message: "Congratulations! You are accessing Api Twidev V1.",
+    links: {
+      documentation: "https://github.com/thalysonalexr/twidev-backend#readme"
+    }
   });
 });
 
 routes.get("/v1/users/github/oauth", GithubController.oauth);
 routes.get("/v1/users/signin/callback", GithubController.callback);
 routes.post("/v1/users", Auth.authenticate, UserController.create);
+routes.post("/v1/users/token/validate", Auth.authenticate, (request, response) => {
+  return response.status(200).json({
+    username: request.userGithub.login
+  });
+});
 
 routes.get("/v1/tweets", Auth.authenticate, TweetController.all);
 routes.post("/v1/tweets", Auth.authenticate, TweetController.create);
