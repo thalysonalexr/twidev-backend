@@ -21,6 +21,7 @@ routes.get("/v1/", (request, response) => {
 
 routes.get("/v1/users/github/oauth", GithubController.oauth);
 routes.get("/v1/users/signin/callback", GithubController.callback);
+routes.get("/v1/users/:id", Auth.authenticate, UserController.find);
 routes.post("/v1/users", Auth.authenticate, UserController.create);
 routes.post("/v1/users/token/validate", Auth.authenticate, (request, response) => {
   return response.status(200).json({

@@ -29,5 +29,27 @@ module.exports = {
         message: `[error:400] ${err.message}`
       });
     }
+  },
+
+  async find(request, response) {
+
+    const { userGithub } = request;
+    const { login } = userGithub;
+
+    const user = await User.findOne({ username: login }).select({
+      _id: 0,
+      name: 1,
+      username: 1,
+      avatar: 1
+    });
+
+    if ( ! user) {
+      return response.status(404).json({
+        success: false,
+        message: '[error:404] user not found.'
+      });
+    }
+
+    return response.status(200).json(user);
   }
 };
